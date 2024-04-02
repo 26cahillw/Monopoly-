@@ -15,7 +15,9 @@ public class MonoGraphics {
 		
 		// what I want to do here is rather than each thing being a wholly new frame, just make a different panel
 		
-		displayYNButton();
+		System.out.println("This progam has run!");
+		MonopolyPlayer player = new MonopolyPlayer("Computer");
+		displayYNButton("Computer", player);
 			
 	}
 	
@@ -27,15 +29,22 @@ public class MonoGraphics {
 		frame.setSize(800, 1200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		graphics.drawString(shout, 400, 600); // may need adjustment
+		// graphics.drawString(shout, 400, 600); // may need adjustment
 		
 		JButton buttonYes = new JButton("Yes");
 		buttonYes.setSize(10, 10);
+		buttonYes.setLocation(500, 600);
+		// should color/ style the buttons here
+		
 		JButton buttonNo = new JButton("No");
 		buttonNo.setSize(10, 10);
+		buttonNo.setLocation(500, 800);
+		// should style/ color the buttons here
 
-		buttonYes.addActionListener(new YesListener());
-		buttonNo.addActionListener(new NoListener());
+		frame.add(buttonNo);
+		frame.add(buttonYes);
+		// buttonYes.addActionListener(new YesListener());
+		//buttonNo.addActionListener(new NoListener());
 		
 		
 		frame.setVisible(true);
@@ -57,7 +66,7 @@ public class MonoGraphics {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		frame.setVisible(true);
 		
-		Graphics graphics = new Graphics();
+		
 		graphics.drawString(shout, 400, 600); // this starts at the point, so will need to be offset accordingly
 		
 		// display game "stats"
@@ -68,12 +77,10 @@ public class MonoGraphics {
 		ArrayList<Utility> utilities = player.getUtilities();
 		int finalBalance = player.getBalance();
 		
-		
-		
-	
-		
+		// figure out how to display these stats
 		// display character icon
-		// Graphics.drawImage();	
+		// Graphics.drawImage();
+		// need various images for the game characters/ pieces and such
 		
 	}
 	
@@ -88,13 +95,14 @@ public class MonoGraphics {
 		
 		graphics.drawString(shout, 400, 600); // this starts at the point, so will need to be offset accordingly
 		
-		
+		// style this somehow
+		// add the character image perhaps
 		
 		frame.setVisible(true);
 		
 	}
 	
-	public static void displayerInJail(MonopolyPlayer player) {
+	public static void displayInJail(MonopolyPlayer player) {
 		
 		if (player.getJailStatus()) { // just confirming this to make sure it isn't called improperly
 			
@@ -104,35 +112,60 @@ public class MonoGraphics {
 			
 			JButton Roll = new JButton("Roll");
 			Roll.addActionListener(new Roll());
+			Roll.setLocation(1200, 400);
 			
 			JButton Pay = new JButton("Pay");
 			Pay.addActionListener(new Pay());
+			Roll.setLocation(1200, 600);
 			
 			JButton Play = new JButton("Play");
 			Play.addActionListener(new Play());	
+			Roll.setLocation(1200, 800);
+			
+			frame.add(Play);
+			frame.add(Roll);
+			frame.add(Pay);
 		}		
 	}
 	
 	public static void displayBoard(MonopolyPlayer player) {
 		
 		int pos = player.getPosition();
+		
+		if (pos > 10) {
+			// rotateboard();
+			if (pos > 20) {
+				if (pos > 30) {
+					
+				}
+			}
+		}
+		else {
+			
+		}
+		//frame.setrotation();
 		// thinking that it may be convinient to rotate the board for the perspective of the player to be better
 		
 		JButton Mortgage = new JButton("Mortgage");
 		Mortgage.addActionListener(new MortgageListener());
+		Mortgage.setLocation(1200, 400);
 		
 		JButton Trade = new JButton("Trade");
 		Trade.addActionListener(new Trade());
+		Mortgage.setLocation(1200, 600);
 		
 		JButton Menu = new JButton("Menu");
 		Menu.addActionListener(new Menu());	
+		Mortgage.setLocation(1200, 800);
 		
+		// need to figure out all of these elements below ***
+	}
+	
 		class MortgageListener implements ActionListener {
 			public void actionPerformed(ActionEvent event) {
 				System.out.println("The player has clicked Mortgage!");
 			}
 		}
-	}
 	
 	class YesListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
@@ -179,4 +212,3 @@ public class MonoGraphics {
 		}
 	}
 }
-
